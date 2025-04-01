@@ -1,0 +1,61 @@
+<!-- Kujunda elektroonilise kella näide kasutades chatGPT-d(https://chat.openai.com/chat) vastavalt maitsele või kindlale teemale, mahutades kella täisekraanile, et saaks kasutada lauakella või ekraanisäästja asemel. Selleks, et see sobiks paljudele ekraanidele, kasuta kujunduse loomisel protsendilisi väärtusi (nt width: 100%; ) või nt võimalda kella suurust kasutajal muuta.
+
+Nõuded
+Veebirakendus töötab. Näitab kella, kuupäeva, nädalapäeva ja aastat.
+Vastavalt kasutaja tegevusele on võimalik muuta kuut lauakella atribuuti muuta.
+Kasutatud on eventListener'e ja funktsioone.
+Kell on originaalne ning kasutajaliides on maitsekalt kujundatud kasutades CSS-i.
+
+Atribuudid mida muuta, teksti ja tagaplaani värv, teksti font, teksti suurus, teksti asetus, võimalus muuta kell digitaalseks ja analoogseks.
+
+Lisa valik teksti või tausta värv teha muutlik rgb värv, mis liigub läbi kõikide värvide
+
+Lisa menüü tausta ja teksti rgb kiiruse muutmiseks
+
+Kas on võimalik teha nii, et kell oleks joonistatud samade värvidega, mis tekst, taust on läbipaistev ja iga tunni jaoks on eraldi joon
+
+Kas saab nii teha, et valikutemenuu oleks üleval vasakus nurgas ja neid saab minimize'ida nupust
+
+Menüü slaidereid ei ole näha, ainult slaideri liigutatav osa, kuidas muuta selle piirded teksti värvi?
+
+Fondi menüü taust on valge, fondi nimed ei ole näha -->
+
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektrooniline Kell</title>
+    <link rel="stylesheet" href="clockhw.css">
+</head>
+<body>
+    <div id="clockContainer">
+        <div id="clock"></div>
+        <div id="date"></div>
+    </div>
+    <div id="settings">
+        <label>Teksti värv: <input type="color" id="textColor"></label>
+        <label>Taustavärv: <input type="color" id="bgColor"></label>
+        <label>Teksti suurus: <input type="range" id="textSize" min="5" max="15"></label>
+        <label>Font: <select id="font">
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+        </select></label>
+        <button id="toggleMode">Vaheta režiimi</button>
+        <button id="toggleRGBText">RGB Tekst sisse</button>
+        <button id="toggleRGBBg">RGB Taust sisse</button>
+        <label>RGB Teksti kiirus: <input type="range" id="rgbTextSpeed" min="1" max="10" value="5"></label>
+        <label>RGB Tausta kiirus: <input type="range" id="rgbBgSpeed" min="1" max="10" value="5"></label>
+    </div>
+    <div id="info">
+        <p> Lehe tegi Oskar Aleksander Padu koostöös ChatGPT tehisaruga </p>
+        <a href="https://github.com/oapadu/1kodutoo">Repositooriumi link</a>
+    </div>
+    <canvas id="analogClock" width="300" height="300" style="display:none; background: transparent;"></canvas>
+    <script src="clockhw.js"></script>
+</body>
+</html>

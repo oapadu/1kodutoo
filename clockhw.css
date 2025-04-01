@@ -1,0 +1,154 @@
+/* Kujunda elektroonilise kella näide kasutades chatGPT-d(https://chat.openai.com/chat) vastavalt maitsele või kindlale teemale, mahutades kella täisekraanile, et saaks kasutada lauakella või ekraanisäästja asemel. Selleks, et see sobiks paljudele ekraanidele, kasuta kujunduse loomisel protsendilisi väärtusi (nt width: 100%; ) või nt võimalda kella suurust kasutajal muuta.
+
+Nõuded
+Veebirakendus töötab. Näitab kella, kuupäeva, nädalapäeva ja aastat.
+Vastavalt kasutaja tegevusele on võimalik muuta kuut lauakella atribuuti muuta.
+Kasutatud on eventListener'e ja funktsioone.
+Kell on originaalne ning kasutajaliides on maitsekalt kujundatud kasutades CSS-i.
+
+Atribuudid mida muuta, teksti ja tagaplaani värv, teksti font, teksti suurus, teksti asetus, võimalus muuta kell digitaalseks ja analoogseks.
+
+Lisa valik teksti või tausta värv teha muutlik rgb värv, mis liigub läbi kõikide värvide
+
+Lisa menüü tausta ja teksti rgb kiiruse muutmiseks
+
+Kas on võimalik teha nii, et kell oleks joonistatud samade värvidega, mis tekst, taust on läbipaistev ja iga tunni jaoks on eraldi joon
+
+Kas saab nii teha, et valikutemenuu oleks üleval vasakus nurgas ja neid saab minimize'ida nupust
+
+Menüü slaidereid ei ole näha, ainult slaideri liigutatav osa, kuidas muuta selle piirded teksti värvi?
+
+Fondi menüü taust on valge, fondi nimed ei ole näha */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+#clockContainer {
+    text-align: center;
+    font-size: 5vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#date {
+    font-size: 2vw;
+    opacity: 0.8;
+}
+
+#toggleSettings {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#settings {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: center;
+    width: 250px;
+    max-width: 300px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#info{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+}
+
+#settings.hidden {
+    display: none;
+}
+
+button, input, select {
+    background: none;
+    color: inherit;
+    border: 1px solid #fff;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: inherit;
+    min-width: 120px;
+    text-align: center;
+}
+
+button:hover, input:hover, select:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+select {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border: 1px solid #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+select option {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+input[type="color"], input[type="range"] {
+    cursor: pointer;
+    appearance: none;
+    background: none;
+    border: 1px solid currentColor;
+    border-radius: 5px;
+    height: 8px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: currentColor;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: currentColor;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#analogClock {
+    display: none;
+    width: 80vw;
+    height: 80vw;
+    max-width: 300px;
+    max-height: 300px;
+    background: transparent;
+}
